@@ -1,0 +1,45 @@
+
+import java.util.*;
+
+class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int k=sc.nextInt();
+		int[] a=new int[]{23,435,212,3,332,2,32,2,234,456,3,33,4};
+		Deque<Integer> q=new LinkedList<Integer>();
+
+
+		for(int i=0;i<k;i++){
+			//iterate first window
+			while(!q.isEmpty() && a[q.peekLast()]<a[i]){
+				q.pollLast();
+				
+			}
+			q.offerLast(i);
+      
+		}
+	
+
+		System.out.print(a[q.peekFirst()]+" ");
+		for(int i=k;i<a.length;i++){
+		  //remove indices out of window
+			if(!q.isEmpty() && q.peekFirst()<=i-k){
+				q.pollFirst();
+				
+			}
+      //remove elements less than current
+			while(!q.isEmpty() && a[q.peekLast()]<a[i]){
+				q.pollLast();
+				
+			}
+			q.offerLast(i);
+
+		
+		System.out.print(a[q.peekFirst()]+" ");
+
+		
+		}
+
+	}
+
+}
