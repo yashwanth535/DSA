@@ -7,39 +7,50 @@ class Main{
 		int k=sc.nextInt();
 		int[] a=new int[]{23,435,212,3,332,2,32,2,234,456,3,33,4};
 		Deque<Integer> q=new LinkedList<Integer>();
-
-
 		for(int i=0;i<k;i++){
 			//iterate first window
 			while(!q.isEmpty() && a[q.peekLast()]<a[i]){
-				q.pollLast();
-				
+				q.pollLast();	
 			}
 			q.offerLast(i);
-      
 		}
-	
-
 		System.out.print(a[q.peekFirst()]+" ");
 		for(int i=k;i<a.length;i++){
 		  //remove indices out of window
 			if(!q.isEmpty() && q.peekFirst()<=i-k){
-				q.pollFirst();
-				
+				q.pollFirst();	
 			}
       //remove elements less than current
 			while(!q.isEmpty() && a[q.peekLast()]<a[i]){
 				q.pollLast();
-				
 			}
 			q.offerLast(i);
-
-		
 		System.out.print(a[q.peekFirst()]+" ");
+		}
+	}
+}
 
-		
+
+
+import java.util.*;
+
+class temp{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int k=sc.nextInt();
+		int[] a=new int[]{23,435,212,3,332,2,32,2,234,456,3,33,4};
+		Deque<Integer> q=new LinkedList<Integer>();
+
+		for(int i=0;i<a.length;i++){
+			if(!q.isEmpty() && q.peekFirst()<=i-k)q.pollFirst();
+
+			while(!q.isEmpty() && a[q.peekLast()]<a[i])q.pollLast();
+			q.offerLast(i);
+
+
+			if(i>=k-1)System.out.print(a[q.peekFirst()]+" ");
 		}
 
 	}
-
 }
+
